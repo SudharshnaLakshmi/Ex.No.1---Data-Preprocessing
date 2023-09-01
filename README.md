@@ -3,7 +3,7 @@
 
 To perform Data preprocessing in a data set downloaded from Kaggle
 
-##REQUIPMENTS REQUIRED:
+## REQUIPMENTS REQUIRED:
 Hardware – PCs
 Anaconda – Python 3.7 Installation / Google Colab /Jupiter Notebook
 
@@ -32,10 +32,63 @@ Normalizing the data
 Splitting the data into test and train
 
 ## PROGRAM:
-/Write your code here/
+```
+# Importing Libraries
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
 
+#Read the dataset
+df=pd.read_csv('Churn_Modelling.csv')
+df
+
+#Checking for null values
+df.isnull().sum()
+
+#Checking for dulpicated values
+df.duplicated()
+
+#Dropping unwanted columns
+df.drop('RowNumber',axis=1,inplace=True)
+df.drop('CustomerId',axis=1,inplace=True)
+df.drop('Age',axis=1,inplace=True)
+df.drop('Gender',axis=1,inplace=True)
+df.drop('Surname',axis=1,inplace=True)
+df.drop('Geography',axis=1,inplace=True)
+df
+
+#Normalising using MinMaxScaler
+ms=MinMaxScaler()
+df2=pd.DataFrame(ms.fit_transform(df))
+df2
+
+#Splitting the dataset - x
+X=df2.iloc[:,:-1].values
+X
+
+#Splitting the dataset - y
+y=df2.iloc[:,-1].values
+y
+
+# Training the dataset
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print(X_train)
+print("X_train: ",len(X_train))
+
+print(X_test)
+print("Size of X_test: ",len(X_test))
+```
 ## OUTPUT:
-/ Show the result/
-
+![1.png]
+![2.png]
+![3.png]
+![4.png]
+![5.png]
+![6.png]
+![7.png]
+![8.png]
+![9.png]
 ## RESULT
-/Type your result here/
+Thus the given data is been processed successfully.
